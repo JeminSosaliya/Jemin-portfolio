@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Throttle mousemove for better performance
     let lastMoveTime = 0;
-    const moveThrottle = 16; // ~60fps
+    const moveThrottle = 10; // Faster response
 
     window.addEventListener('mousemove', (e) => {
         const now = Date.now();
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Smooth animation loop for the outline
     const animateCursor = () => {
-        const speed = 0.15; // Reduced for smoother lag effect
+        const speed = 0.25; // Faster speed for more responsive cursor
 
         outlineX += (mouseX - outlineX) * speed;
         outlineY += (mouseY - outlineY) * speed;
@@ -153,30 +153,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Check if form was just submitted (from FormSubmit redirect)
-    if (window.location.hash === '#message-sent') {
-        const statusDiv = document.getElementById('formStatus');
-        if (statusDiv) {
-            statusDiv.textContent = '✅ Thank you! Your message has been sent successfully. I\'ll get back to you soon!';
-            statusDiv.style.display = 'block';
-            statusDiv.style.backgroundColor = 'rgba(59, 130, 246, 0.2)';
-            statusDiv.style.border = '1px solid var(--accent-color)';
-            statusDiv.style.color = 'var(--text-primary)';
+    // Handle contact form submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        // Check if form was just submitted (coming back from FormSubmit)
+        if (sessionStorage.getItem('formSubmitted') === 'true') {
+            sessionStorage.removeItem('formSubmitted');
+            const statusDiv = document.getElementById('formStatus');
+            if (statusDiv) {
+                statusDiv.innerHTML = '✅ <strong>Thank you!</strong> Your message has been sent successfully. I\'ll get back to you within the next few hours!';
+                statusDiv.style.display = 'block';
+                statusDiv.style.backgroundColor = 'rgba(59, 130, 246, 0.2)';
+                statusDiv.style.border = '1px solid var(--accent-color)';
+                statusDiv.style.color = 'var(--text-primary)';
+                statusDiv.style.animation = 'fadeIn 0.5s ease-in';
 
-            // Scroll to contact section
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
+                // Scroll to contact section
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    setTimeout(() => {
+                        contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                }
+
+                // Hide message after 10 seconds
                 setTimeout(() => {
-                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 500);
+                    statusDiv.style.display = 'none';
+                }, 10000);
             }
-
-            // Remove the hash and hide message after 10 seconds
-            setTimeout(() => {
-                statusDiv.style.display = 'none';
-                window.history.replaceState(null, null, window.location.pathname);
-            }, 10000);
         }
+
+        // Set flag when form is submitted
+        contactForm.addEventListener('submit', function () {
+            sessionStorage.setItem('formSubmitted', 'true');
+        });
     }
 });
 
