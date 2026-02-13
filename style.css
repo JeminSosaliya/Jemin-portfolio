@@ -63,7 +63,8 @@ body {
 }
 
 
-/* Background Gradients */
+
+/* Enhanced Background with Animated Gradient Mesh */
 body::before {
     content: '';
     position: fixed;
@@ -72,10 +73,60 @@ body::before {
     width: 100%;
     height: 100%;
     background:
-        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.12), transparent 35%),
+        radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.1), transparent 45%);
+    z-index: -2;
+    pointer-events: none;
+    animation: gradientShift 40s ease infinite;
+}
+
+/* Animated gradient orbs */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.08), transparent 40%),
+        radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.08), transparent 35%),
+        radial-gradient(circle at 90% 90%, rgba(236, 72, 153, 0.06), transparent 30%);
     z-index: -1;
     pointer-events: none;
+    animation: gradientShift 50s ease infinite reverse;
+}
+
+/* Subtle grid pattern overlay */
+.grid-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -3;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Subtle animation for gradient mesh */
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.15) rotate(180deg);
+    }
 }
 
 /* Typography */
@@ -291,6 +342,20 @@ img {
 .social-links a:hover {
     color: var(--text-primary);
     transform: translateY(-3px);
+}
+
+/* Upwork icon image styling to match Font Awesome icons */
+.social-links a[aria-label="Upwork"] img {
+    height: 1.2em;
+    vertical-align: -0.05em;
+    position: relative;
+    top: -2px;
+    filter: brightness(0) saturate(100%) invert(64%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(92%) contrast(88%);
+    transition: var(--transition);
+}
+
+.social-links a[aria-label="Upwork"]:hover img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(180deg) brightness(105%) contrast(105%);
 }
 
 .image-wrapper {
