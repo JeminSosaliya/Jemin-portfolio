@@ -1050,6 +1050,11 @@ img {
 /* Detailed Mobile Optimizations */
 @media (max-width: 480px) {
 
+    /* Global Spacing Fix */
+    .section-padding {
+        padding: 50px 0 !important;
+    }
+
     /* Hero Section Fixes */
     .hero {
         padding-top: 90px;
