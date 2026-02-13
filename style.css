@@ -917,7 +917,7 @@ img {
     font-style: italic;
 }
 
-.client-info h4 {
+.client-info h3 {
     color: var(--text-primary);
     margin-bottom: 5px;
     font-size: 1.1rem;
