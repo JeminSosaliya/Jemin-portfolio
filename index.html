@@ -59,7 +59,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 </head>
 <body>
     <div class="cursor-dot"></div>
@@ -107,7 +108,12 @@
                 <div class="hero-image fade-in-up delay-200">
                     <div class="image-wrapper">
                         <!-- Changed to the newly requested photo -->
-                        <img src="assets/jemin-profile-optimized.jpg" alt="Jemin Sosaliya" width="400" height="500" fetchpriority="high">
+                        <img src="assets/jemin-profile-desktop.jpg" 
+                             srcset="assets/jemin-profile-mobile.jpg 360w, assets/jemin-profile-desktop.jpg 800w"
+                             sizes="(max-width: 480px) 100vw, 500px" 
+                             alt="Jemin Sosaliya" 
+                             width="400" height="500" 
+                             fetchpriority="high">
                         <div class="experience-badge">
                             <span class="years">6+</span>
                             <span class="text">Years of<br>Experience</span>
