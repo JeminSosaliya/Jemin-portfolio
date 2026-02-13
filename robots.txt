@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jeminsosaliya.com/sitemap.xml
+Sitemap: https://jemin-portfolio.vercel.app/sitemap.xml
