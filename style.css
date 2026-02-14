@@ -408,8 +408,8 @@ img {
     /* Fill the wider container */
     object-fit: cover;
     /* Crop to fill */
-    object-position: center 60%;
-    /* Align lower to crop top yellow bricks */
+    object-position: center 40%;
+    /* Centered to show face properly across all devices */
     display: block;
     /* No filters - natural colors */
     transition: transform 0.5s ease;
@@ -1104,7 +1104,8 @@ img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center 35% !important;
+        object-position: center 30% !important;
+        /* Adjusted for mobile to prevent top cropping */
     }
 
     .experience-badge {
